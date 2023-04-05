@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/05 18:43:00 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:52:08 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 int	main(int ac, char **av)
 {
 	if (ac < 4 || ac > 5)
-	{
-		write(2, "Error: input parameters\n", 24);
-		exit(1);
-	}
-
+		ft_error("Error: input parameters");
+	
 }

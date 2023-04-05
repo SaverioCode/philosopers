@@ -6,13 +6,13 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/05 18:43:06 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:48:33 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPERS_H
 # define PHILOSOPERS_H
 
-
+# include "libft/libft.h"
 
 #endif
