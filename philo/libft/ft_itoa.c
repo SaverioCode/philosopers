@@ -6,14 +6,14 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:11:30 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/05 23:11:31 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/06 03:06:01 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "libft.h"
 
-char	*ft_itoa(long long num)
+char	*ft_itoa(long num)
 {
 	int		strlen;
 	char	*strnum;
