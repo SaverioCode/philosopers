@@ -6,11 +6,11 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:35:53 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/05 23:43:32 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:32:38 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopers.h"
+#include "philo.h"
 
 void	ft_handle_input(int ac, char **av, t_philo *philo)
 {
