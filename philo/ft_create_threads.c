@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_create_threads.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/12 19:48:51 by fgarzi-c         ###   ########.fr       */
+/*   Created: 2023/04/12 19:49:04 by fgarzi-c          #+#    #+#             */
+/*   Updated: 2023/04/12 19:56:35 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+void	ft_create_threads(t_philo *philo)
 {
-	t_philo	philo;
+	int	x;
 
-	if (ac < 4 || ac > 5)
-		ft_error("Error: input parameters\n");
-	ft_handle_input(ac, av, &philo);
-	ft_create_threads();
-	free(philo.philos);
-	free(philo.forks);
-	return (0);
+	if (!philo)
+		ft_error("Error: create threads failes\n");
+	x = 0;
+	while (x < philo->philo_num)
+	{
+		pthread_create(philo->philos[x], NULL, ft_routine, philo);
+		x++;
+	}
 }

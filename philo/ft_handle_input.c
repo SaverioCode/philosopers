@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:35:53 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/12 19:44:03 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:56:28 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_handle_input(int ac, char **av, t_philo *philo)
 {
+	if (!ac || !av || !philo)
+		ft_error("Error: handle input failed\n");
 	philo->philo_num = av[1];
 	if (philo->philo_num < 1)
 		ft_error("Error: number of philos has to be at least 1");
