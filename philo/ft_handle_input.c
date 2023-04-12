@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:35:53 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/12 19:32:38 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:40:38 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 void	ft_handle_input(int ac, char **av, t_philo *philo)
 {
-	philo->tot_philos = av[1];
-	if (philo->tot_philos < 1)
+	philo->philo_num = av[1];
+	if (philo->philo_num < 1)
 		ft_error("Error: number of philos has to be at least 1");
-	philo->philos = ft_calloc(philo->tot_philos + 1);
+	philo->philos = ft_calloc(philo->philo_num + 1);
 	philo->die_time = ft_atoi(av[2]);
 	philo->eat_time = ft_atoi(av[3]);
 	philo->sleep_time = ft_atoi(av[4]);
+	if (philo->die_time < 0 || philo->eat_time < 1 || philo->sleep_time < 1)
+		ft_error("Error: parameters have to be > 0\n");
 	if (ac == 6)
 		philo->max_eat = ft_atoi(av[5]);
+	if (philo->max_eat < 1)
+		ft_error("Error: parameters have to be > 0\n");
 }

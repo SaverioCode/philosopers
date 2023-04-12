@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosopers.h                                      :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/12 16:15:47 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:36:32 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 
 typedef struct s_philo
 {
-	int	tot_philos;
+	int	philo_num;
 	int	*philos;
+	int	*forks;
 	int	die_time;
 	int	eat_time;
 	int	sleep_time;
 	int	max_eat;
-	
 } t_philo;
 
 #endif
