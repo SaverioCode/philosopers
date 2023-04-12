@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/12 19:48:51 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/12 20:57:27 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int	main(int ac, char **av)
 	if (ac < 4 || ac > 5)
 		ft_error("Error: input parameters\n");
 	ft_handle_input(ac, av, &philo);
-	ft_create_threads();
-	free(philo.philos);
-	free(philo.forks);
+	ft_create_threads(&philo);
+	ft_free(&philo);
 	return (0);
 }

@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 23:11:20 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/12 20:59:38 by fgarzi-c         ###   ########.fr       */
+/*   Created: 2023/04/12 20:55:02 by fgarzi-c          #+#    #+#             */
+/*   Updated: 2023/04/12 20:58:16 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philo.h"
 
-#include "libft.h"
-
-void	*ft_calloc(size_t bytes)
+void	ft_free(t_philo *philo)
 {
-	void	*var;
-	char	*tmp;
-	size_t	i;
+	int	i;
 
-	if (bytes > 16711568)
-		ft_error("Error: allocation is to big!\n");
-	var = malloc(bytes);
-	if (!var)
-		ft_error("Error: allocation failed!\n");
-	tmp = (char *)var;
+	if (!philo)
+		ft_error("Error: final free failed\n");
 	i = 0;
-	while (i < bytes)
+	while (i < philo->philo_num)
 	{
-		tmp[i] = 0;
+		pthread_mutex_destroy(&philo->forks[i]);
 		i++;
 	}
-	return (var);
+	free(philo->philos);
+	free(philo->forks);
 }
