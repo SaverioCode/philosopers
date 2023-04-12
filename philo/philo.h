@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/12 19:52:49 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:58:04 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@
 
 typedef struct s_philo
 {
-	int			philo_num;
-	pthread_t	*philos;
-	int			*forks;
-	int			die_time;
-	int			eat_time;
-	int			sleep_time;
-	int			max_eat;
+	int				philo_num;
+	pthread_t		*philos;
+	pthread_mutex_t	*forks;
+	int				die_time;
+	int				eat_time;
+	int				sleep_time;
+	int				max_eat;
 } t_philo;
 
 void	ft_handle_input(int ac, char **av, t_philo *philo);
+void	ft_create_threads(t_philo *philo);
 
 #endif
