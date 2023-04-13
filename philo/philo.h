@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/12 20:57:09 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:45:49 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft/libft.h"
 # include <pthread.h>
 # include <sys/time.h>
+# include <stdio.h>
 
 typedef struct s_philo
 {
@@ -31,5 +32,6 @@ typedef struct s_philo
 void	ft_handle_input(int ac, char **av, t_philo *philo);
 void	ft_create_threads(t_philo *philo);
 void	ft_free(t_philo *philo);
+void	ft_routine(t_philo *philo);
 
 #endif

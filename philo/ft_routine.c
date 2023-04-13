@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_routine.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 23:11:25 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/13 16:41:49 by fgarzi-c         ###   ########.fr       */
+/*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
+/*   Updated: 2023/04/13 16:36:56 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-void	ft_error(char *str)
+void	ft_routine(t_philo *philo)
 {
-	if (!str)
-		write(2, "Error: <message not setted>.\n", 29);
-	else
-		write(2, str, ft_strlen(str));
-	exit(1);
+	printf("%d\n", philo->philo_num);
+	write(1, "vecchio\n", 8);
 }
