@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/13 16:36:56 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:30:38 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 void	ft_routine(t_philo *philo)
 {
-	printf("%d\n", philo->philo_num);
-	write(1, "vecchio\n", 8);
+	int		id;
+	// char 	*str;
+	int		len;
+	
+	
+	id = (int)philo->philos[0];
+	// str = ft_itoa(id);
+	len = ft_numlen(id, 10);
+	printf("%d\n", id);
+	// write(1, str, len);
+	// free(str);
+	write(1, "ciao\n", 5);
 }

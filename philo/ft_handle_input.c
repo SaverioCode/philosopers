@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:35:53 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/13 16:53:11 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:40:00 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	ft_handle_input(int ac, char **av, t_philo *philo)
 {
 	if (!ac || !av || !philo)
 		ft_error("Error: handle input failed\n");
-	philo->philo_num = ft_atoi(av[1]);
-	if (philo->philo_num < 1)
+	philo->data.philo_num = ft_atoi(av[1]);
+	if (philo->data.philo_num < 1)
 		ft_error("Error: number of philos has to be at least 1");
-	philo->philos = ft_calloc(philo->philo_num + 1);
-	philo->forks = ft_calloc(philo->philo_num + 1);
+	philo->philos = ft_calloc((philo->data.philo_num + 1) * 4);
+	philo->forks = ft_calloc((philo->data.philo_num + 1) * 4);
 	philo->die_time = ft_atoi(av[2]);
 	philo->eat_time = ft_atoi(av[3]);
 	philo->sleep_time = ft_atoi(av[4]);
@@ -28,8 +28,8 @@ void	ft_handle_input(int ac, char **av, t_philo *philo)
 		ft_error("Error: parameters have to be > 0\n");
 	if (ac == 6)
 	{	
-		philo->max_eat = ft_atoi(av[5]);
-		if (philo->max_eat < 1)
+		philo->data.max_eat = ft_atoi(av[5]);
+		if (philo->data.max_eat < 1)
 			ft_error("Error: parameters have to be > 0\n");
 	}
 }
