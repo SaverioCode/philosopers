@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/13 23:39:56 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:04:30 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_philo
 {
 	pthread_t		*philos;
 	pthread_mutex_t	*forks;
+	int				*time;
 	int				die_time;
 	int				eat_time;
 	int				sleep_time;
