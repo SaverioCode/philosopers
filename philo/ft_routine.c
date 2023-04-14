@@ -6,15 +6,20 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/14 18:29:22 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:32:42 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	ft_check_death(t_philo philo)
+static int	ft_check_death(t_philo *philo)
 {
+	int	death;
 
+	pthread_mutex_lock(philo->data.death_mutex);
+	death = philo->data.death;
+	pthread_mutex_unlock(philo->data.death_mutex);
+	return (death);
 }
 
 static void	ft_action(int time_action, t_philo *philo, int id, char *str)
@@ -49,19 +54,16 @@ void	ft_routine(t_philo *philo)
 	philo_id = philo->data.philo_counter;
 	philo->data.philo_counter++;
 	pthread_mutex_unlock(philo->data.philo_cnt_mutex);
-	pthread_mutex_lock(philo->data.death_mutex);
-	while (philo->data.death)
+	while (ft_check_death(philo))
 	{
-		pthread_mutex_unlock(philo->data.death_mutex);
 		gettimeofday(philo->time[philo_id], NULL);
 		ft_action(philo->eat_time, philo, philo_id, "is eating");
-		if (!ft_check_deat(philo))
+		if (!ft_check_death(philo))
 			break;
 		ft_action(philo->sleep_time, philo, philo_id, "is sleeping");
-		if (!ft_check_deat(philo))
+		if (!ft_check_death(philo))
 			break;
 		ft_action(0, philo, philo_id, "is thinking");
-		pthread_mutex_lock(philo->data.death_mutex);
 	}
 	ft_action(0, philo, philo_id, "died");
 }
