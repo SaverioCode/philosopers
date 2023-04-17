@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/17 18:22:29 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:41:30 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,9 @@ void	ft_routine(t_philo *philo)
 
 	id = ft_get_id(philo);
 	count = 0;
+	gettimeofday(&philo->time[id], NULL);
 	while (ft_check_death(philo))
 	{
-		if (count == 0)
-			gettimeofday(&philo->time[id], NULL);
 		if (count == philo->data.max_eat)
 			break ;
 		if (count > 0 && !ft_check_time(philo, time.tv_usec, id))
