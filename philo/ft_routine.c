@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/17 16:06:04 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 16:08:42 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void	ft_routine(t_philo *philo)
 	{
 		if (count == 0)
 			gettimeofday(&philo->time[id], NULL);
-		if (count == philo->data.max_eat || !ft_check_time(philo, time.tv_usec, id))
+		if (count == philo->data.max_eat || \
+			!ft_check_time(philo, time.tv_usec, id))
 			break ;
 		ft_action(philo->eat_time, philo, id, "is eating");
 		gettimeofday(&time, NULL);
