@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/17 21:00:15 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:01:31 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	philo.data.philo_counter = 0;
 	philo.data.death = 1;
 	ft_handle_input(ac, av, &philo);
-	philo.time = calloc(philo.data.philo_num + 1, sizeof(struct timeval));
+	philo.time = ft_calloc((philo.data.philo_num + 1) * sizeof(struct timeval));
 	ft_create_threads(&philo);
 	while (philo.data.death)
 		;
