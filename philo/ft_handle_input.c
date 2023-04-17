@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:35:53 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/17 20:53:06 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:02:23 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	ft_handle_input(int ac, char **av, t_philo *philo)
 	if (philo->data.philo_num < 1)
 		ft_error("Error: number of philos has to be at least 1\n");
 	philo->philos = ft_calloc((philo->data.philo_num + 1) * sizeof(pthread_t));
-	philo->forks = ft_calloc((philo->data.philo_num + 1) * sizeof(pthread_mutex_t));
+	philo->forks = ft_calloc((philo->data.philo_num + 1) \
+		* sizeof(pthread_mutex_t));
 	philo->die_time = ft_atoi(av[2]);
 	philo->eat_time = ft_atoi(av[3]);
 	philo->sleep_time = ft_atoi(av[4]);
