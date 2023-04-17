@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/14 18:04:30 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:46:09 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_philo
 	int				eat_time;
 	int				sleep_time;
 	t_data			data;
-} t_philo;
+}	t_philo;
 
 void	ft_handle_input(int ac, char **av, t_philo *philo);
 void	ft_create_threads(t_philo *philo);
