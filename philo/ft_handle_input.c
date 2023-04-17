@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:35:53 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/17 14:44:13 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:11:05 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_handle_input(int ac, char **av, t_philo *philo)
 		ft_error("Error: handle input failed\n");
 	philo->data.philo_num = ft_atoi(av[1]);
 	if (philo->data.philo_num < 1)
-		ft_error("Error: number of philos has to be at least 1");
+		ft_error("Error: number of philos has to be at least 1\n");
 	philo->philos = ft_calloc((philo->data.philo_num + 1) * 4);
 	philo->forks = ft_calloc((philo->data.philo_num + 1) * 4);
 	philo->die_time = ft_atoi(av[2]);

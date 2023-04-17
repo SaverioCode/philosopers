@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/17 16:08:42 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 16:27:04 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static int	ft_get_id(t_philo *philo)
 {
 	int	id;
 
-	pthread_mutex_lock(philo->data.philo_cnt_mutex);
+	pthread_mutex_lock(&philo->data.philo_cnt_mutex);
 	id = philo->data.philo_counter;
 	philo->data.philo_counter++;
-	pthread_mutex_unlock(philo->data.philo_cnt_mutex);
+	pthread_mutex_unlock(&philo->data.philo_cnt_mutex);
 	return (id);
 }
 
@@ -27,9 +27,9 @@ static int	ft_check_death(t_philo *philo)
 {
 	int	death;
 
-	pthread_mutex_lock(philo->data.death_mutex);
+	pthread_mutex_lock(&philo->data.death_mutex);
 	death = philo->data.death;
-	pthread_mutex_unlock(philo->data.death_mutex);
+	pthread_mutex_unlock(&philo->data.death_mutex);
 	return (death);
 }
 
@@ -82,8 +82,9 @@ void	ft_routine(t_philo *philo)
 	{
 		if (count == 0)
 			gettimeofday(&philo->time[id], NULL);
-		if (count == philo->data.max_eat || \
-			!ft_check_time(philo, time.tv_usec, id))
+		if (count == philo->data.max_eat)
+			break ;
+		if (count > 0 && !ft_check_time(philo, time.tv_usec, id))
 			break ;
 		ft_action(philo->eat_time, philo, id, "is eating");
 		gettimeofday(&time, NULL);
