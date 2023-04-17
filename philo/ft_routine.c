@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/17 16:27:04 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:22:29 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ static int	ft_check_time(t_philo *philo, suseconds_t time, int id)
 	gettimeofday(&interval, NULL);
 	if (interval.tv_usec - time >= philo->die_time)
 	{
+		pthread_mutex_lock(&philo->data.death_mutex);
 		philo->data.death = 0;
+		pthread_mutex_unlock(&philo->data.death_mutex);
 		ft_action(0, philo, id, "died");
 		return (0);
 	}
