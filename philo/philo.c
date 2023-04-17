@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/17 18:38:29 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:40:55 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,9 @@ int	main(int ac, char **av)
 	philo.data.philo_counter = 0;
 	philo.data.death = 1;
 	ft_handle_input(ac, av, &philo);
-	philo.time = calloc(philo.data.philo_num + 1, sizeof(pthread_mutex_t));
+	philo.time = calloc(philo.data.philo_num + 1, sizeof(struct timeval));
 	ft_create_threads(&philo);
-	while (1)
-	{
-		pthread_mutex_lock(&philo.data.death_mutex);
-		if (!philo.data.death)
-		{
-			pthread_mutex_unlock(&philo.data.death_mutex);
-			break ;
-		}
-		pthread_mutex_unlock(&philo.data.death_mutex);
-	}
-	usleep(1000);
+	usleep(100000);
 	ft_free(&philo);
 	return (0);
 }
