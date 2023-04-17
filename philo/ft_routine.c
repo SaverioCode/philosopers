@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/14 18:32:42 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:43:05 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	ft_routine(t_philo *philo)
 	pthread_mutex_unlock(philo->data.philo_cnt_mutex);
 	while (ft_check_death(philo))
 	{
+		if (count == philo->data.max_eat)
+			break;
 		gettimeofday(philo->time[philo_id], NULL);
 		ft_action(philo->eat_time, philo, philo_id, "is eating");
 		if (!ft_check_death(philo))
@@ -64,6 +66,7 @@ void	ft_routine(t_philo *philo)
 		if (!ft_check_death(philo))
 			break;
 		ft_action(0, philo, philo_id, "is thinking");
+		count++;
 	}
 	ft_action(0, philo, philo_id, "died");
 }

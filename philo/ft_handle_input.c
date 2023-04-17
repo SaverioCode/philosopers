@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:35:53 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/13 23:03:11 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:44:13 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_handle_input(int ac, char **av, t_philo *philo)
 	philo->die_time = ft_atoi(av[2]);
 	philo->eat_time = ft_atoi(av[3]);
 	philo->sleep_time = ft_atoi(av[4]);
-	if (philo->die_time < 0 || philo->eat_time < 1 || philo->sleep_time < 1)
+	if (philo->die_time <= 0 || philo->eat_time < 1 || philo->sleep_time < 1)
 		ft_error("Error: parameters have to be > 0\n");
 	if (ac == 6)
 	{	
