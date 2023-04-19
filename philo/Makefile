@@ -6,7 +6,7 @@
 #    By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 18:38:04 by fgarzi-c          #+#    #+#              #
-#    Updated: 2023/04/13 16:55:28 by fgarzi-c         ###   ########.fr        #
+#    Updated: 2023/04/19 18:13:55 by fgarzi-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 LIB_L = libft/libft.a
 LIB_F = philo.a
 SRCS = philo.c ft_free.c ft_handle_input.c ft_routine.c \
-	ft_create_threads.c
+	ft_routine_utils.c ft_create_threads.c
 OBJS = $(SRCS:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra

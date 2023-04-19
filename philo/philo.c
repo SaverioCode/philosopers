@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/19 02:05:44 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:13:09 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 		if (!philo.data.death)
 		{
 			pthread_mutex_unlock(&philo.data.death_mutex);
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(&philo.data.death_mutex);
 	}
