@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/19 02:17:04 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/19 02:17:59 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,4 @@ void	ft_routine(t_philo *philo)
 		ft_action(0, philo, id, "is thinking");
 		count++;
 	}
-	printf("COUNTER: %d\n", count);//////
 }
