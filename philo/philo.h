@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/19 19:50:58 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:49:00 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_data
 
 typedef struct s_philo
 {
+	pthread_t		master;
+	struct timeval	master_time;
 	pthread_t		*philos;
 	pthread_mutex_t	*forks;
 	struct timeval	*time;
@@ -47,7 +49,8 @@ void	ft_routine(t_philo *philo);
 int		ft_get_id(t_philo *philo);
 int		ft_check_death(t_philo *philo);
 void	ft_check_max_eat(t_philo *philo, int count);
-int		ft_check_time(t_philo *philo, struct timeval *time, int id);
+int		ft_check_time(t_philo *philo, int id);
 int		ft_calculate_time(struct timeval *time, struct timeval *interval);
+void	ft_master(t_philo *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:49:04 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/19 01:33:32 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:20:10 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_create_threads(t_philo *philo)
 		i++;
 	}
 	i = 0;
+	pthread_create(&philo->master, NULL, (void *)ft_master, philo);
 	while (i < philo->data.philo_num)
 	{
 		pthread_create(&philo->philos[i], NULL, (void *)ft_routine, philo);

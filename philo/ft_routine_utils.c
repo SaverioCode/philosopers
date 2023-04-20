@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:11:12 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/19 19:51:34 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:40:19 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,4 @@ int	ft_calculate_time(struct timeval *time, struct timeval *interval)
 	time_2 = (interval->tv_sec * 1000000) + interval->tv_usec;
 	diff = time_2 - time_1;
 	return (diff);
-}
-
-int	ft_check_time(t_philo *philo, struct timeval *time, int id)
-{
-	struct timeval	interval;
-	int				time_diff;
-
-	gettimeofday(&interval, NULL);
-	time_diff = ft_calculate_time(time, &interval);
-	if (time_diff / 1000 >= philo->die_time)
-	{
-		pthread_mutex_lock(&philo->data.death_mutex);
-		philo->data.death = 0;
-		pthread_mutex_unlock(&philo->data.death_mutex);
-		printf("%d %d died\n", time_diff / 1000, id + 1);
-		return (0);
-	}
-	return (1);
 }
