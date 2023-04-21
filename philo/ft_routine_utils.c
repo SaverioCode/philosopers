@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:11:12 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/21 04:41:22 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/21 05:03:44 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,15 @@ int	ft_check_death(t_philo *philo)
 	return (death);
 }
 
-// void	ft_check_max_eat(t_philo *philo, int count)
-// {
-// 	pthread_mutex_lock(&philo->data.eat_mutex);
-// 	if (count == philo->data.max_eat)
-// 	{
-// 		pthread_mutex_lock(&philo->data.death_mutex);
-// 		philo->data.death = 0;
-// 		pthread_mutex_unlock(&philo->data.death_mutex);
-// 	}
-// 	pthread_mutex_unlock(&philo->data.eat_mutex);
-// }
+int	ft_check_max_eat(t_philo *philo, int count, int id)
+{
+	if (count == philo->data.max_eat)
+	{
+		philo->eat_limit[id] = 1;
+		return (0);
+	}
+	return (1);
+}
 
 int	ft_calculate_time(struct timeval *time, struct timeval *interval)
 {

@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/21 04:34:03 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/21 05:03:27 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_philo
 	pthread_mutex_t	*forks;
 	struct timeval	*time;
 	int				die_time;
+	int				*eat_limit;
 	int				eat_time;
 	int				sleep_time;
 	t_data			data;
@@ -48,7 +49,7 @@ void	ft_free(t_philo *philo);
 void	ft_routine(t_philo *philo);
 int		ft_get_id(t_philo *philo);
 int		ft_check_death(t_philo *philo);
-void	ft_check_max_eat(t_philo *philo, int count);
+int		ft_check_max_eat(t_philo *philo, int count, int id);
 int		ft_check_time(t_philo *philo, int id);
 int		ft_calculate_time(struct timeval *time, struct timeval *interval);
 void	ft_master(t_philo *philo);

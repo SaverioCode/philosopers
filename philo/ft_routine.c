@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/21 04:41:06 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/21 05:03:19 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_routine(t_philo *philo)
 		if (!ft_eat(philo, id))
 			break ;
 		count++;
-		if (count == philo->data.max_eat)
+		if (!ft_check_max_eat(philo, count, id))
 			return ;
 		if (!ft_check_death(philo))
 			break ;

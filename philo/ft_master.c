@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:20:23 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/21 03:48:32 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/21 05:05:44 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,13 @@ void	ft_master(t_philo *philo)
 		i = 0;
 		while (i < philo->philo_num)
 		{
-			if (!ft_check_time(philo, i))
-				return ;
-			if (!ft_check_death(philo))
-				return ;
+			if (!philo->eat_limit[i])
+			{
+				if (!ft_check_time(philo, i))
+					return ;
+				if (!ft_check_death(philo))
+					return ;
+			}
 			i++;
 		}
 	}
