@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:20:23 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/20 21:48:52 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/21 03:48:32 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	ft_check_time(t_philo *philo, int id)
 
 	gettimeofday(&interval, NULL);
 	time_diff = ft_calculate_time(&philo->time[id], &interval);
-	if (time_diff / 1000 >= philo->die_time)
+	if (time_diff >= philo->die_time)
 	{
 		pthread_mutex_lock(&philo->data.death_mutex);
 		philo->data.death = 0;
 		pthread_mutex_unlock(&philo->data.death_mutex);
 		time_death = ft_calculate_time(&philo->master_time, &interval);
-		printf("%d %d died\n", time_death / 1000, id + 1);
+		printf("%d %d died\n", time_death, id + 1);
 		return (0);
 	}
 	return (1);
@@ -37,10 +37,11 @@ void	ft_master(t_philo *philo)
 	int	i;
 
 	gettimeofday(&philo->master_time, NULL);
+	usleep(10000);
 	while (ft_check_death(philo))
 	{
 		i = 0;
-		while (i < philo->data.philo_num)
+		while (i < philo->philo_num)
 		{
 			if (!ft_check_time(philo, i))
 				return ;
