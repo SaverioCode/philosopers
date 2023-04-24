@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 20:36:26 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 23:13:51 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,18 @@ static void	ft_kill_them_all(t_philo *philo)
 int	main(int ac, char **av)
 {
 	t_philo	philo;
+	int		status;
 
 	if (ac < 5 || ac > 6)
 		ft_error("Error: input parameters\n");
 	ft_handle_input(ac, av, &philo);
+	philo.eat_limit = 0;
 	philo.pid = ft_calloc((philo.philo_num) * 4);
 	ft_create_threads(&philo);
-	usleep(1000);
+	waitpid(-1, &status, 0);
+	if (WIFEXITED(status))
+		ft_kill_them_all(&philo);
+	usleep(1000000);
 	ft_free(&philo);
 	exit(0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 20:33:07 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 23:54:51 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_routine(t_philo *philo, int id)
 	if (pid == 0)
 		return ;
 	philo->pid[id] = pid;
+	philo->id = id;
 	pthread_create(&philo->master, NULL, (void *)ft_master, philo);
 	count = 0;
 	gettimeofday(&philo->time, NULL);
@@ -64,7 +65,7 @@ void	ft_routine(t_philo *philo, int id)
 	{
 		ft_eat(philo, id);
 		count++;
-		ft_check_max_eat(philo, count, id);
+		ft_check_max_eat(philo, count);
 		ft_action(philo, id, philo->sleep_time, "is sleeping");
 		ft_action(philo, id, 0, "is thinking");
 	}

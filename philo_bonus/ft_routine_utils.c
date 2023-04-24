@@ -6,20 +6,18 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:11:12 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 20:38:31 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 23:14:20 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_check_max_eat(t_philo *philo, int count, int id)
+void	ft_check_max_eat(t_philo *philo, int count)
 {
 	if (count == philo->max_eat)
 	{
 		philo->eat_limit = 1;
-		usleep(100);
-		kill(philo->pid[philo->id], SIGKILL);
-		exit(0);
+		exit(2);
 	}
 }
 

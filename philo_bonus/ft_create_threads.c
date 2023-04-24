@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:49:04 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 18:49:27 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/25 00:06:50 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	ft_create_threads(t_philo *philo)
 
 	if (!philo)
 		ft_error("Error: create threads failes\n");
-	philo->forks = sem_open("/forks", O_CREAT, S_IRUSR | S_IWUSR, philo->philo_num);
+	sem_unlink("/forks");
+	philo->forks = sem_open("/forks", O_CREAT, S_IROTH | S_IWOTH, philo->philo_num);
+	if (philo->forks == SEM_FAILED)
+		printf("PORCODIO\n");
 	i = 0;
 	gettimeofday(&philo->master_time, NULL);
 	while (i < philo->philo_num)
