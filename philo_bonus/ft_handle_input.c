@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:35:53 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 15:07:54 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:49:56 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_handle_input(int ac, char **av, t_philo *philo)
 		ft_error("Error: parameters have to be > 0\n");
 	if (ac == 6)
 	{	
-		philo->data.max_eat = ft_atoi(av[5]);
-		if (philo->data.max_eat < 1)
+		philo->max_eat = ft_atoi(av[5]);
+		if (philo->max_eat < 1)
 			ft_error("Error: parameters have to be > 0\n");
 	}
 }

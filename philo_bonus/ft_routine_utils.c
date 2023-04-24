@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:11:12 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 16:09:27 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:50:01 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_check_max_eat(t_philo *philo, int count, int id)
 {
-	if (count == philo->data.max_eat)
+	if (count == philo->max_eat)
 	{
 		philo->eat_limit[id - 1] = 1;
 		exit(0);
