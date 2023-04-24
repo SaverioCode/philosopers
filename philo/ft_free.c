@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 20:55:02 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/21 05:01:26 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:04:07 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_free(t_philo *philo)
 	i = 0;
 	pthread_mutex_destroy(&philo->data.death_mutex);
 	pthread_mutex_destroy(&philo->data.philo_cnt_mutex);
-	pthread_mutex_destroy(&philo->data.eat_mutex);
 	while (i < philo->philo_num)
 	{
 		pthread_mutex_destroy(&philo->forks[i]);

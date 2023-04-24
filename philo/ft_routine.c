@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/21 05:03:19 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:12:21 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	ft_eat(t_philo *philo, int id)
 		take_fork(philo, id, id);
 	}
 	gettimeofday(&philo->time[id], NULL);
-	if (!ft_check_death(philo))
+	if (!philo->data.death)
 		return (0);
 	time_diff = ft_calculate_time(&philo->master_time, &philo->time[id]);
 	printf("%d %d is eating\n", time_diff, id + 1);
@@ -61,6 +61,13 @@ static int	ft_eat(t_philo *philo, int id)
 	pthread_mutex_unlock(&philo->forks[left_fork]);
 	pthread_mutex_unlock(&philo->forks[id]);
 	return (1);
+}
+
+static void	ft_suicide(t_philo *philo, int id)
+{
+	take_fork(philo, 0, id);
+	while (philo->data.death)
+		;
 }
 
 void	ft_routine(t_philo *philo)
@@ -71,17 +78,17 @@ void	ft_routine(t_philo *philo)
 	id = ft_get_id(philo);
 	count = 0;
 	gettimeofday(&philo->time[id], NULL);
-	while (ft_check_death(philo))
+	if (philo->philo_num == 1)
+		ft_suicide(philo, id);
+	while (philo->data.death)
 	{
 		if (!ft_eat(philo, id))
 			break ;
 		count++;
-		if (!ft_check_max_eat(philo, count, id))
+		if (!ft_check_max_eat(philo, count, id) || !philo->data.death)
 			return ;
-		if (!ft_check_death(philo))
-			break ;
 		ft_action(philo, id, philo->sleep_time, "is sleeping");
-		if (!ft_check_death(philo))
+		if (!philo->data.death)
 			break ;
 		ft_action(philo, id, 0, "is thinking");
 	}

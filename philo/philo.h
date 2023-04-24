@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/21 05:03:27 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:03:50 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_data
 {
 	pthread_mutex_t	philo_cnt_mutex;
 	int				philo_counter;
-	pthread_mutex_t	eat_mutex;
 	int				max_eat;
 	pthread_mutex_t	death_mutex;
 	int				death;
