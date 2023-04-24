@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 23:13:51 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/25 00:59:55 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ int	main(int ac, char **av)
 	philo.pid = ft_calloc((philo.philo_num) * 4);
 	ft_create_threads(&philo);
 	waitpid(-1, &status, 0);
+	printf("GURADA QUA: %d\n", WIFEXITED(status));////
 	if (WIFEXITED(status))
+	{	
+		write(1, "here\n", 5);///
 		ft_kill_them_all(&philo);
+	}
 	usleep(1000000);
 	ft_free(&philo);
 	exit(0);
