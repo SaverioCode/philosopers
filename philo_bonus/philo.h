@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 16:49:39 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:35:28 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@
 
 typedef struct s_philo
 {
+	pthread_t		master;
 	struct timeval	master_time;
 	int				philo_num;
+	int				id;
 	int				*pid;
 	sem_t			*forks;
-	struct timeval	*time;
+	struct timeval	time;
 	int				die_time;
-	int				*eat_limit;
+	int				eat_limit;
 	int				eat_time;
 	int				max_eat;
 	int				sleep_time;

@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 17:23:12 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:33:07 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	ft_eat(t_philo *philo, int id)
 
 	take_fork(philo, id);
 	take_fork(philo, id);
-	gettimeofday(&philo->time[id], NULL);
-	time_diff = ft_calculate_time(&philo->master_time, &philo->time[id]);
+	gettimeofday(&philo->time, NULL);
+	time_diff = ft_calculate_time(&philo->master_time, &philo->time);
 	printf("%d %d is eating\n", time_diff, id + 1);
 	usleep(philo->eat_time * 1000);
 	sem_post(philo->forks);
@@ -57,13 +57,14 @@ void	ft_routine(t_philo *philo, int id)
 	if (pid == 0)
 		return ;
 	philo->pid[id] = pid;
+	pthread_create(&philo->master, NULL, (void *)ft_master, philo);
 	count = 0;
-	gettimeofday(&philo->time[id], NULL);
+	gettimeofday(&philo->time, NULL);
 	while (1)
 	{
 		ft_eat(philo, id);
 		count++;
-		ft_check_max_eat(philo, count, id);\
+		ft_check_max_eat(philo, count, id);
 		ft_action(philo, id, philo->sleep_time, "is sleeping");
 		ft_action(philo, id, 0, "is thinking");
 	}
