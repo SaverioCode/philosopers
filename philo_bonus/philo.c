@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 15:42:52 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:07:26 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int ac, char **av)
 	ft_create_threads(&philo);
 	write(1, "here1\n", 6);/////
 	ft_master(&philo);
+	write(1, "here2\n", 6);/////
 	usleep(1000);
 	ft_free(&philo);
 	exit(0);

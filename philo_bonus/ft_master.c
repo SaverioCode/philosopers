@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:20:23 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 15:41:32 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:10:45 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_master(t_philo *philo)
 	int	i;
 
 	usleep(10000);
-	while (philo->data.death)
+	while (*philo->data.death)
 	{
 		i = 0;
 		while (i < philo->philo_num)
@@ -44,7 +44,7 @@ void	ft_master(t_philo *philo)
 			{
 				if (!ft_check_time(philo, i))
 					break ;
-				if (!philo->data.death)
+				if (!*philo->data.death)
 					break ;
 			}
 			i++;
