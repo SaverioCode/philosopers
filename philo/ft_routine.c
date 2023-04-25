@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 18:12:21 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 00:58:00 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,75 +20,77 @@ static void	ft_action(t_philo *philo, int id, int time, char *str)
 	gettimeofday(&interval, NULL);
 	time_diff = ft_calculate_time(&philo->master_time, &interval);
 	printf("%d %d %s\n", time_diff, id + 1, str);
-	usleep(time * 1000);
+	usleep(time * 999);
 }
 
-static void	take_fork(t_philo *philo, int fork, int id)
+static void	take_fork(t_philo *philo, int fork, int id, struct timeval *interval)
 {
-	struct timeval	interval;
 	int				time_diff;
 
 	pthread_mutex_lock(&philo->forks[fork]);
-	gettimeofday(&interval, NULL);
-	time_diff = ft_calculate_time(&philo->master_time, &interval);
+	gettimeofday(interval, NULL);
+	time_diff = ft_calculate_time(&philo->master_time, interval);
 	printf("%d %d has taken a fork\n", time_diff, id + 1);
 }
 
-static int	ft_eat(t_philo *philo, int id)
+static int	ft_eat(t_philo *philo, int id, int *forks, struct timeval *interval)
 {
-	int				left_fork;
 	int				time_diff;
 
-	left_fork = id - 1;
-	if (id == philo->philo_num)
-		left_fork = philo->philo_num - 1;
-	if (id % 2 == 0)
+	if (id % 2 != 0)
 	{
-		take_fork(philo, id, id);
-		take_fork(philo, left_fork, id);
+		take_fork(philo, forks[1], id, interval);
+		take_fork(philo, forks[0], id, interval);
 	}
 	else
 	{
-		take_fork(philo, left_fork, id);
-		take_fork(philo, id, id);
+		take_fork(philo, forks[0], id, interval);
+		take_fork(philo, forks[1], id, interval);
 	}
 	gettimeofday(&philo->time[id], NULL);
-	if (!philo->data.death)
+	if (!ft_check_death(philo))
 		return (0);
 	time_diff = ft_calculate_time(&philo->master_time, &philo->time[id]);
 	printf("%d %d is eating\n", time_diff, id + 1);
-	usleep(philo->eat_time * 1000);
-	pthread_mutex_unlock(&philo->forks[left_fork]);
-	pthread_mutex_unlock(&philo->forks[id]);
+	usleep(philo->eat_time * 999);
+	pthread_mutex_unlock(&philo->forks[forks[0]]);
+	pthread_mutex_unlock(&philo->forks[forks[1]]);
 	return (1);
 }
 
-static void	ft_suicide(t_philo *philo, int id)
+static void	ft_suicide(t_philo *philo, int id, struct timeval *interval)
 {
-	take_fork(philo, 0, id);
+	take_fork(philo, 0, id, interval);
 	while (philo->data.death)
 		;
 }
 
 void	ft_routine(t_philo *philo)
 {
-	int		id;
-	int		count;
+	struct timeval	interval;
+	int				id;
+	int				count;
+	int				forks[2];
 
 	id = ft_get_id(philo);
+	forks[0] = id;
+	if (id == 0)
+		forks[1] = philo->philo_num - 1;
+	else
+		forks[1] = id - 1;
 	count = 0;
 	gettimeofday(&philo->time[id], NULL);
 	if (philo->philo_num == 1)
-		ft_suicide(philo, id);
-	while (philo->data.death)
+		ft_suicide(philo, id, &interval);
+	while (ft_check_death(philo))
 	{
-		if (!ft_eat(philo, id))
+		if (!ft_eat(philo, id, forks, &interval))
 			break ;
 		count++;
-		if (!ft_check_max_eat(philo, count, id) || !philo->data.death)
-			return ;
+		if (!ft_check_max_eat(philo, count, id) || !ft_check_death(philo))
+			break ;
 		ft_action(philo, id, philo->sleep_time, "is sleeping");
-		if (!philo->data.death)
+		if (!ft_check_death(philo))
 			break ;
 		ft_action(philo, id, 0, "is thinking");
 	}

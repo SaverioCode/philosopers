@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 18:03:50 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 00:23:00 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,17 @@ typedef struct s_data
 {
 	pthread_mutex_t	philo_cnt_mutex;
 	int				philo_counter;
+	int				eat_flag;
 	int				max_eat;
 	pthread_mutex_t	death_mutex;
 	int				death;
+	pthread_mutex_t	write;
 }	t_data;
 
 typedef struct s_philo
 {
 	pthread_t		master;
+	int				master_value;
 	struct timeval	master_time;
 	int				philo_num;
 	pthread_t		*philos;

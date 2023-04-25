@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:49:04 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/24 18:04:03 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:02:14 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_create_threads(t_philo *philo)
 		ft_error("Error: create threads failes\n");
 	pthread_mutex_init(&philo->data.philo_cnt_mutex, NULL);
 	pthread_mutex_init(&philo->data.death_mutex, NULL);
+	pthread_mutex_init(&philo->data.write, NULL);
 	i = 0;
 	while (i < philo->philo_num)
 	{
