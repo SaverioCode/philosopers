@@ -6,11 +6,19 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/26 00:53:32 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 22:28:44 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_choose_fork(int philo_num, int id)
+{
+	if (id == 0)
+		return (philo_num - 1);
+	else
+		return (id - 1);
+}
 
 int	main(int ac, char **av)
 {

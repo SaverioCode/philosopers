@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:19 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/26 00:23:00 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 22:29:08 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ int		ft_check_max_eat(t_philo *philo, int count, int id);
 int		ft_check_time(t_philo *philo, int id);
 int		ft_calculate_time(struct timeval *time, struct timeval *interval);
 void	ft_master(t_philo *philo);
+void	ft_usleep(int time);
+int		ft_choose_fork(int philo_num, int id);
 
 #endif

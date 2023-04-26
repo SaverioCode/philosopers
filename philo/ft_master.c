@@ -6,11 +6,34 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:20:23 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/26 00:53:23 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 22:32:34 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	ft_check_eating(t_philo *philo)
+{
+	int	i;
+	int	c;
+
+	c = 0;
+	i = 0;
+	while (i < philo->philo_num)
+	{
+		if (philo->eat_limit[i] == 1)
+			c++;
+		i++;
+	}
+	if (c == philo->philo_num)
+	{
+		pthread_mutex_lock(&philo->data.death_mutex);
+		philo->data.death = 0;
+		pthread_mutex_unlock(&philo->data.death_mutex);
+		return (0);
+	}
+	return (1);
+}
 
 int	ft_check_time(t_philo *philo, int id)
 {
@@ -20,7 +43,9 @@ int	ft_check_time(t_philo *philo, int id)
 
 	gettimeofday(&interval, NULL);
 	time_diff = ft_calculate_time(&philo->time[id], &interval);
-	if (time_diff > 0 && time_diff > philo->die_time)
+	if (!philo->data.death)
+		return (0);
+	if (time_diff > philo->die_time)
 	{
 		pthread_mutex_lock(&philo->data.death_mutex);
 		philo->data.death = 0;
@@ -35,7 +60,6 @@ int	ft_check_time(t_philo *philo, int id)
 void	ft_master(t_philo *philo)
 {
 	int	i;
-	int	eat;
 
 	gettimeofday(&philo->master_time, NULL);
 	usleep(1000);
@@ -44,19 +68,16 @@ void	ft_master(t_philo *philo)
 		i = 0;
 		while (i < philo->philo_num)
 		{
-			eat = 1;
 			if (!philo->eat_limit[i])
 			{
-				if (!philo->data.death || !ft_check_time(philo, i))
+				if (!ft_check_time(philo, i) || !ft_check_eating(philo))
 				{
 					philo->master_value = 0;
 					return ;
 				}
-				eat--;
 			}
-			if (eat == 1)
-				break ;
 			i++;
+			usleep(20);
 		}
 	}
 	philo->master_value = 0;

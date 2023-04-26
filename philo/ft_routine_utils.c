@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 18:11:12 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/26 00:24:09 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 22:15:45 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,19 @@ int	ft_calculate_time(struct timeval *time, struct timeval *interval)
 	time_2 = (interval->tv_sec * 1000) + (interval->tv_usec / 1000);
 	diff = time_2 - time_1;
 	return (diff);
+}
+
+void	ft_usleep(int time)
+{
+	struct timeval	start;
+	struct timeval	interval;
+
+	gettimeofday(&start, NULL);
+	while (1)
+	{
+		usleep(200);
+		gettimeofday(&interval, NULL);
+		if (time == ft_calculate_time(&start, &interval))
+			break ;
+	}
 }

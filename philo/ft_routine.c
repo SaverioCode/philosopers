@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/26 00:58:00 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/26 22:29:10 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ static void	ft_action(t_philo *philo, int id, int time, char *str)
 	gettimeofday(&interval, NULL);
 	time_diff = ft_calculate_time(&philo->master_time, &interval);
 	printf("%d %d %s\n", time_diff, id + 1, str);
-	usleep(time * 999);
+	ft_usleep(time);
 }
 
-static void	take_fork(t_philo *philo, int fork, int id, struct timeval *interval)
+static void	take_fork(t_philo *philo, int fork, int id, struct timeval *time)
 {
 	int				time_diff;
 
 	pthread_mutex_lock(&philo->forks[fork]);
-	gettimeofday(interval, NULL);
-	time_diff = ft_calculate_time(&philo->master_time, interval);
+	gettimeofday(time, NULL);
+	time_diff = ft_calculate_time(&philo->master_time, time);
 	printf("%d %d has taken a fork\n", time_diff, id + 1);
 }
 
 static int	ft_eat(t_philo *philo, int id, int *forks, struct timeval *interval)
 {
-	int				time_diff;
+	int	time_diff;
 
 	if (id % 2 != 0)
 	{
@@ -52,7 +52,7 @@ static int	ft_eat(t_philo *philo, int id, int *forks, struct timeval *interval)
 		return (0);
 	time_diff = ft_calculate_time(&philo->master_time, &philo->time[id]);
 	printf("%d %d is eating\n", time_diff, id + 1);
-	usleep(philo->eat_time * 999);
+	ft_usleep(philo->eat_time);
 	pthread_mutex_unlock(&philo->forks[forks[0]]);
 	pthread_mutex_unlock(&philo->forks[forks[1]]);
 	return (1);
@@ -74,10 +74,7 @@ void	ft_routine(t_philo *philo)
 
 	id = ft_get_id(philo);
 	forks[0] = id;
-	if (id == 0)
-		forks[1] = philo->philo_num - 1;
-	else
-		forks[1] = id - 1;
+	forks[1] = ft_choose_fork(philo->philo_num, id);
 	count = 0;
 	gettimeofday(&philo->time[id], NULL);
 	if (philo->philo_num == 1)
