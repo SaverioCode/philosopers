@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:20:23 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/28 00:48:06 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:51:54 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	ft_master(t_philo *philo)
 			break ;
 		if (!ft_check_time(philo, philo->id))
 			break ;
-		usleep(100);
+		usleep(200);
 	}
 }
