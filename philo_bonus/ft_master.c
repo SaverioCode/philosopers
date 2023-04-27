@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:20:23 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/25 00:58:14 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:36:16 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	ft_check_time(t_philo *philo, int id)
 
 	gettimeofday(&interval, NULL);
 	time_diff = ft_calculate_time(&philo->time, &interval);
-	if (time_diff >= philo->die_time)
+	if (time_diff > philo->die_time)
 	{
 		kill(philo->pid[id], SIGKILL);
 		time_death = ft_calculate_time(&philo->master_time, &interval);
 		printf("%d %d died\n", time_death, id + 1);
-		exit (2);
+		exit (0);
 	}
 	return (1);
 }

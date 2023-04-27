@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 20:55:02 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/25 18:40:57 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:36:20 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	ft_free(t_philo *philo)
 	if (!philo)
 		ft_error("Error: final free failed\n");
 	sem_close(philo->forks);
-	sem_unlink("/test");
+	sem_unlink("/forks");
 	free(philo->pid);
 }
