@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:20:23 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/26 22:32:34 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:07:50 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,7 @@ static int	ft_check_eating(t_philo *philo)
 		i++;
 	}
 	if (c == philo->philo_num)
-	{
-		pthread_mutex_lock(&philo->data.death_mutex);
-		philo->data.death = 0;
-		pthread_mutex_unlock(&philo->data.death_mutex);
 		return (0);
-	}
 	return (1);
 }
 
@@ -66,11 +61,13 @@ void	ft_master(t_philo *philo)
 	while (philo->data.death)
 	{
 		i = 0;
+		if (!ft_check_eating(philo))
+			break ;
 		while (i < philo->philo_num)
 		{
 			if (!philo->eat_limit[i])
 			{
-				if (!ft_check_time(philo, i) || !ft_check_eating(philo))
+				if (!ft_check_time(philo, i))
 				{
 					philo->master_value = 0;
 					return ;
