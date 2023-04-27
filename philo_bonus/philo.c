@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/28 00:35:33 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:40:45 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 int	main(int ac, char **av)
 {
 	t_philo	philo;
-	int		status;
+	// int		status;
 
 	if (ac < 5 || ac > 6)
 		ft_error("Error: input parameters\n");
@@ -35,8 +35,8 @@ int	main(int ac, char **av)
 	philo.eat_limit = 0;
 	philo.pid = ft_calloc((philo.philo_num) * 4);
 	ft_create_threads(&philo);
-	waitpid(-1, &status, 0);
-	printf("GURADA QUA: %d\n", WIFEXITED(status));////
+	// waitpid(-1, &status, 0);
+	// printf("GURADA QUA: %d\n", WIFEXITED(status));////
 	// if (WIFEXITED(status))
 	// {	
 	// 	write(1, "here\n", 5);///

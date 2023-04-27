@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:49:04 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/27 18:36:16 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/28 00:46:36 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_create_threads(t_philo *philo)
 
 	if (!philo)
 		ft_error("Error: create threads failes\n");
-	sem_unlink("/forks");
-	philo->forks = sem_open("/forks", O_CREAT, 4278, philo->philo_num);
+	sem_unlink("/ciao");
+	philo->forks = sem_open("/ciao", O_CREAT, 4278, philo->philo_num);
 	i = 0;
 	gettimeofday(&philo->master_time, NULL);
 	while (i < philo->philo_num)
