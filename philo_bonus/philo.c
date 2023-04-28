@@ -6,13 +6,13 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 18:38:34 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/28 00:49:51 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/04/28 02:52:13 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	ft_kill_them_all(t_philo *philo)
+static void	kill_them_all(t_philo *philo)
 {
 	int	i;
 
@@ -22,12 +22,41 @@ static void	ft_kill_them_all(t_philo *philo)
 		kill(philo->pid[i], SIGKILL);
 		i++;
 	}
+	usleep(100);
+}
+
+static int	get_id(t_philo *philo, int pid)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->philo_num)
+	{
+		if (philo->pid[i] == pid)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+static void	print_death(t_philo *philo, int pid)
+{
+	struct timeval	interval;
+	int				time_diff;
+	int				id;
+
+	gettimeofday(&interval, NULL);
+	time_diff = ft_calculate_time(&philo->master_time, &interval);
+	id = get_id(philo, pid);
+	printf("%d %d died\n", time_diff, id + 1);
 }
 
 int	main(int ac, char **av)
 {
-	t_philo	philo;
-	int		status;
+	t_philo		philo;
+	int			status;
+	pid_t		child;
+	static int	i;
 
 	if (ac < 5 || ac > 6)
 		ft_error("Error: input parameters\n");
@@ -35,15 +64,18 @@ int	main(int ac, char **av)
 	philo.eat_limit = 0;
 	philo.pid = ft_calloc((philo.philo_num) * 4);
 	ft_create_threads(&philo);
-	waitpid(-1, &status, 0);
-	printf("GURADA QUA: %d\n", WIFEXITED(status));////
-	if (WIFEXITED(status))
-	{	
-		write(1, "here\n", 5);///
-		ft_kill_them_all(&philo);
+	while (i != philo.philo_num)
+	{
+		child = waitpid(-1, &status, 0);
+		if (WSTOPSIG(status) == 3)
+		{
+			kill_them_all(&philo);
+			print_death(&philo, child);
+			break ;
+		}
+		else if (WSTOPSIG(status) == 2)
+			i++;
 	}
-	while (1)
-		;
 	ft_free(&philo);
 	return (0);
 }
