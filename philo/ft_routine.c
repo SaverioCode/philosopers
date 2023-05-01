@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:26:26 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/04/26 22:29:10 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:29:45 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,6 @@ static int	ft_eat(t_philo *philo, int id, int *forks, struct timeval *interval)
 	return (1);
 }
 
-static void	ft_suicide(t_philo *philo, int id, struct timeval *interval)
-{
-	take_fork(philo, 0, id, interval);
-	while (philo->data.death)
-		;
-}
-
 void	ft_routine(t_philo *philo)
 {
 	struct timeval	interval;
@@ -77,8 +70,6 @@ void	ft_routine(t_philo *philo)
 	forks[1] = ft_choose_fork(philo->philo_num, id);
 	count = 0;
 	gettimeofday(&philo->time[id], NULL);
-	if (philo->philo_num == 1)
-		ft_suicide(philo, id, &interval);
 	while (ft_check_death(philo))
 	{
 		if (!ft_eat(philo, id, forks, &interval))
